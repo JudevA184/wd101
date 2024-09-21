@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet" crossorigin="anonymous">
+
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        .terms-label {
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .required-field::after {
+            content: "*";
+            color: red;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form id="user-form" >
+        <label for="username" class="required-field">Username:</label>
+        <input type="text" id="username" name="username" required><br>
+        
+        <label for="email" class="required-field">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        
+        <label for="password" class="required-field">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        
+        <label for="dob" class="required-field">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" min="" max="" onfocus="set_range" required ><br>
+        
+        <label for="terms" class="terms-label">
+            <input type="checkbox" id="terms" name="terms" required>
+            I accept the terms and conditions
+        </label><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+    <div class="relative bg-white">
+        <div class="mx-auto">
+            <h2 class="text-3xl text-center font-bold">Entries</h2>
+            <div class="divide-y divide-gray-300/50" id="user_entries"></div>
+        </div>   
+    </div>
+    <script>
+        const today=new Date()
+        const min_date=new Date(today.getFullYear()-55,today.getMonth(),today.getDate())
+        const max_date=new Date(today.getFullYear()-18,today.getMonth(),today.getDate())
+        document.getElementById("dob").setAttribute('min',min_date.toISOString().split('T')[0])
+        document.getElementById("dob").setAttribute('max',max_date.toISOString().split('T')[0])</script>
+    <script src="./form_script.js"></script>
+</body>
+</html>

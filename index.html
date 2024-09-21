@@ -74,8 +74,8 @@
 </head>
 <body>
     <form id="user-form" >
-        <label for="username" class="required-field">Username:</label>
-        <input type="text" id="username" name="username" required><br>
+        <label for="name" class="required-field">Name:</label>
+        <input type="text" id="name" name="name" required><br>
         
         <label for="email" class="required-field">Email:</label>
         <input type="email" id="email" name="email" required><br>
@@ -93,6 +93,8 @@
         
         <input type="submit" value="Submit">
     </form>
+    <p id="warning" style="color:red; display:none;">Please enter a valid date of birth (between 18 and 55 years).</p>
+
     <div class="relative bg-white">
         <div class="mx-auto">
             <h2 class="text-3xl text-center font-bold">Entries</h2>
@@ -100,11 +102,33 @@
         </div>   
     </div>
     <script>
+        const warning_msg=document.getElementById("warning")
         const today=new Date()
         const min_date=new Date(today.getFullYear()-55,today.getMonth(),today.getDate())
         const max_date=new Date(today.getFullYear()-18,today.getMonth(),today.getDate())
         document.getElementById("dob").setAttribute('min',min_date.toISOString().split('T')[0])
-        document.getElementById("dob").setAttribute('max',max_date.toISOString().split('T')[0])</script>
-    <script src="./index.js"></script>
+        document.getElementById("dob").setAttribute('max',max_date.toISOString().split('T')[0])
+        const validate_dob=()=>{
+            const dob_val=new Date(document.getElementById("dob").value)
+            if(dob_val<min_date || dob_val>max_date){
+                warning_msg.style.display="block";
+                return false
+            }
+            else {
+                warning_msg.style.display = "none";
+                return true;
+            }
+        }
+        dobInput.addEventListener("change", validate_dob);
+
+        document.getElementById("user-form").addEventListener("submit", (event) => {
+            if (!validate_dob()) {
+                event.preventDefault();
+            }
+        });
+
+    </script>
+    <script src="./form_script.js"></script>
 </body>
 </html>
+

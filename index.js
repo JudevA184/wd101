@@ -1,4 +1,5 @@
 
+
 let getform=document.getElementById("user-form")
 
 const retrive_entries=()=>{
@@ -32,8 +33,8 @@ const dispaly_entries=()=>{
     <th class="px-4 py-2">Name</th>
     <th class="px-4 py-2">Email</th>
     <th class="px-4 py-2">Password</th>
-    <th class="px-4 py-2">DOB</th>
-    <th class="px-4 py-2">Accepted_terms</th>
+    <th class="px-4 py-2">Dob</th>
+    <th class="px-4 py-2">Accepted terms?</th>
     </tr>${table_entries}</table>`
 
     let details=document.getElementById("user_entries")
@@ -41,7 +42,7 @@ const dispaly_entries=()=>{
 }
 const save_user_form=(event)=>{
     event.preventDefault()
-    const name=document.getElementById("username").value
+    const name=document.getElementById("name").value
     const email=document.getElementById("email").value
     const password=document.getElementById("password").value
     const dob=document.getElementById("dob").value
